@@ -34,7 +34,8 @@ function init(){
 
 
 function pressEnter(event){
-    event.preventDefault();
+    if(event.key == "Enter")
+        event.preventDefault();
 }
 
 function check (){
