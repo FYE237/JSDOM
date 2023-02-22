@@ -1,0 +1,23 @@
+{
+  "name": "tp3jsdom_emmanuel_fezeu_youmbi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Exercice-41.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/grenoble-inp-ensimag/4MMCAW6/G3/TP3_JSDOM/TP3JSDOM_emmanuel_fezeu_youmbi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/grenoble-inp-ensimag/4MMCAW6/G3/TP3_JSDOM/TP3JSDOM_emmanuel_fezeu_youmbi/issues"
+  },
+  "homepage": "https://gitlab.com/grenoble-inp-ensimag/4MMCAW6/G3/TP3_JSDOM/TP3JSDOM_emmanuel_fezeu_youmbi#readme",
+  "dependencies": {
+    "cypress": "^12.6.0",
+    "serve": "^14.2.0"
+  }
+}

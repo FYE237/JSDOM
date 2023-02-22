@@ -56,13 +56,15 @@ function reinitialise(){
 
 function lifo_push(){
     const textZone = document.getElementById("newItem")
-    const tmp = "" + textZone.value;
-    let noeud = document.createElement("li")
-    const texte = document.createTextNode(tmp);
-    const lifo = document.getElementById("lifo");
-    lifo.prepend(noeud);
-    noeud.appendChild(texte);
-    textZone.value = "";    noeud.appendChild(texte);
+    if(textZone.value.length != 0){
+        const tmp = "" + textZone.value;
+        let noeud = document.createElement("li")
+        const texte = document.createTextNode(tmp);
+        const lifo = document.getElementById("lifo");
+        lifo.prepend(noeud);
+        noeud.appendChild(texte);
+        textZone.value = "";    noeud.appendChild(texte);
+    }
 }
 
 function lifo_pop (){
