@@ -2,5 +2,5 @@ node_modules
 text_txt
 cypress/downloads
 cypress/fixtures
-cypress/support
+# cypress/support
 cypress/videos
