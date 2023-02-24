@@ -73,7 +73,7 @@ jobcypress:
     - npm i # Installe ce qui est décrit dans package.json
     - ./node_modules/.bin/serve & # Lance le serveur
     - npx cypress run # Lance les tests
-#    - kill -9 $(ps | grep node | awk '{print $1}') # Cette ligne pourrait permettre de tuer serve
+    - kill -9 $(ps | grep node | awk '{print $1}') # Cette ligne pourrait permettre de tuer serve
   artifacts:
       paths:
         - cypress/videos
@@ -85,8 +85,18 @@ minify:
     image: node
     script:
         - npm install minify
-        - ./build.sh
+        - ./scripts/build.sh
     artifacts:                # Le rapport sera disponible pour d'autres jobs
         paths:
         - build
 
+pages: 
+    stage: deploy
+    script:
+        - mkdir -p public # Création du répertoire public
+        - cp -r build/* public/
+    artifacts:        # Le rapport sera disponible pour d'autres jobs
+        paths:
+            - public
+    dependencies:
+        - minify
