@@ -9,8 +9,7 @@ lint-html:      #Vérificaition de la qualité du code html
   stage: lint
   tags:
     - docker
-  image: 
-    - node
+  image: node
   script: 
     - npm install htmlhint
     - ./scripts/linthtml.sh #Script qui éffectue les vérifications
@@ -23,8 +22,7 @@ lint-css:      #Vérificaition de la qualité du code css
   stage: lint
   tags:
     - docker
-  image: 
-    - node
+  image: node
   script: 
     - npm install csslint-cli 
     - ./scripts/lintcss.sh  #Script qui éffectue les vérifications
@@ -37,8 +35,7 @@ lint-js:      #Vérificaition de la qualité du code js
   stage: lint
   tags:
     - docker
-  image: 
-    - node
+  image: node
   script: 
     - npm init @eslint/config 
     - ./scripts/test_js.sh  #Script qui éffectue les vérifications
@@ -93,13 +90,3 @@ minify:
         paths:
         - build
 
-pages: 
-    stage: deploy
-    script:
-        - mkdir -p public # Création du répertoire public
-        - cp -r build/* public/
-    artifacts:        # Le rapport sera disponible pour d'autres jobs
-        paths:
-            - public
-    dependencies:
-        - minify
