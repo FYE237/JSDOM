@@ -1,11 +1,72 @@
-stages:     #Les etapes associés au CI/CD
-  - lint  
-  - badges
-  - test
-  - build
-  - deploy
+stages:     #Les etapes associés au CI/CD # Les étapes associées au projet.
+  - lint    #Vérification du code
+  - badges  #Création des badges
+  - test    #On réalise les tests avec cypress
+  - build   #On fait le minify pour construire  les pages
+  - deploy  #On met les fichiers dans le dossier public
 
+lint-html:      #Vérificaition de la qualité du code html
+  stage: lint
+  tags:
+    - docker
+  image: 
+    - node
+  script: 
+    - npm install htmlhint
+    - ./scripts/linthtml.sh #Script qui éffectue les vérifications
+  artifacts:
+    paths:  #Le rapport est diponible à la fin
+      - linthtml_Exercice-41.html-report.out
+      - linthtml_Exercice-42.html-report.out
 
+lint-css:      #Vérificaition de la qualité du code css
+  stage: lint
+  tags:
+    - docker
+  image: 
+    - node
+  script: 
+    - npm install csslint-cli 
+    - ./scripts/lintcss.sh  #Script qui éffectue les vérifications
+  artifacts:
+    paths:  #Le rapport est diponible à la fin
+      - lintcss_Exercice-41.css-report.out
+      - lintcss_Exercice-42.css-report.out
+
+lint-js:      #Vérificaition de la qualité du code js
+  stage: lint
+  tags:
+    - docker
+  image: 
+    - node
+  script: 
+    - npm init @eslint/config 
+    - ./scripts/test_js.sh  #Script qui éffectue les vérifications
+  artifacts:
+    paths:  #Le rapport est diponible à la fin
+      - lintjs_Exercice-41.js-report.out
+      - lintjs_Exercice-42.js-report.out
+      - lintjs_Exercice-42-def.js-report.out
+
+createbadge: 
+  stage: badge
+  tags: 
+    - docker
+  image: python
+  script:
+    - pip install anybadge
+    - ./scripts/genereBadges.sh  # Script de génération des badges
+  dependencies:         # Les badges sont générés à partir des rapports s'ils sont disponibles
+        - lint-html
+        - lint-css
+        - lint-js
+  artifacts:
+    paths:  # Ces fichiers sont générés par le script genereBadges.sh
+    - linthtml.svg
+    - lintjs.svg
+    - lintcss.svg # et  mis à disposition pour mise en évidence sur la page du dépôt
+  when: always    # Et quoiqu'il arrive la génération des badges devra se faire.
+       
 jobcypress:
   stage: test
   tags:
@@ -19,3 +80,26 @@ jobcypress:
   artifacts:
       paths:
         - cypress/videos
+
+minify:
+    stage: build    #On build les pages
+    tags:
+        - docker
+    image: node
+    script:
+        - npm install minify
+        - ./build.sh
+    artifacts:                # Le rapport sera disponible pour d'autres jobs
+        paths:
+        - build
+
+pages: 
+    stage: deploy
+    script:
+        - mkdir -p public # Création du répertoire public
+        - cp -r build/* public/
+    artifacts:        # Le rapport sera disponible pour d'autres jobs
+        paths:
+            - public
+    dependencies:
+        - minify
