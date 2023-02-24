@@ -52,7 +52,7 @@ createbadge:
   image: python
   script:
     - pip install anybadge
-    - ./scripts/genereBadges.sh  # Script de génération des badges
+    - ./scripts/generateBadges.sh  # Script de génération des badges
   dependencies:         # Les badges sont générés à partir des rapports s'ils sont disponibles
         - lint-html
         - lint-css
