@@ -46,7 +46,7 @@ lint-js:      #Vérificaition de la qualité du code js
       - lintjs_Exercice-42-def.js-report.out
 
 createbadge: 
-  stage: badge
+  stage: badges
   tags: 
     - docker
   image: python
