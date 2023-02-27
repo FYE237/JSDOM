@@ -17,6 +17,7 @@ lint-html:      #Vérificaition de la qualité du code html
     paths:  #Le rapport est diponible à la fin
       - linthtml_Exercice-41.html-report.out
       - linthtml_Exercice-42.html-report.out
+      - linthtml.out
 
 lint-css:      #Vérificaition de la qualité du code css
   stage: lint
@@ -30,6 +31,7 @@ lint-css:      #Vérificaition de la qualité du code css
     paths:  #Le rapport est diponible à la fin
       - lintcss_Exercice-41.css-report.out
       - lintcss_Exercice-42.css-report.out
+      - lintcss.out
 
 lint-js:      #Vérificaition de la qualité du code js
   stage: lint
@@ -44,6 +46,7 @@ lint-js:      #Vérificaition de la qualité du code js
       - lintjs_Exercice-41.js-report.out
       - lintjs_Exercice-42.js-report.out
       - lintjs_Exercice-42-def.js-report.out
+      - lintjs.out
 
 createbadge: 
   stage: badges
