@@ -6,6 +6,7 @@ val=5
 
     rm  -f lintjs*.out
 
+    touch lintjs.out
 
 
 
@@ -18,7 +19,7 @@ done
 for i in lintjs_*.out; do
     if grep -q "[1-9]* error_ " "$i"; then  
         val=10
-        echo 1
+        echo "Error in file $i " >> lintjs.out
         break
     fi
 done
@@ -26,4 +27,6 @@ done
 # S'il n'y a pas eu d'erreur on renvoie 0 en sortie
 if [ "$val" -eq 5 ]; then 
     echo 0
+else 
+    echo 1
 fi

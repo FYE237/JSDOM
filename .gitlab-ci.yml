@@ -100,3 +100,6 @@ pages:
             - public
     dependencies:
         - minify
+
+
+#Les pages sont déployées ici : https://grenoble-inp-ensimag.gitlab.io/4MMCAW6/G3/TP3_JSDOM/TP3JSDOM_emmanuel_fezeu_youmbi/
